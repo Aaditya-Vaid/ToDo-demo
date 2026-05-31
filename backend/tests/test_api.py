@@ -12,6 +12,21 @@ def test_health() -> None:
     assert response.json() == {"status": "ok"}
 
 
+def test_cors_preflight_allows_localhost_and_loopback() -> None:
+    with TestClient(app) as client:
+        for origin in ("http://localhost:5173", "http://127.0.0.1:5173"):
+            response = client.options(
+                "/auth/login",
+                headers={
+                    "Origin": origin,
+                    "Access-Control-Request-Method": "POST",
+                    "Access-Control-Request-Headers": "content-type",
+                },
+            )
+            assert response.status_code == 200
+            assert response.headers["access-control-allow-origin"] == origin
+
+
 def test_authenticated_task_lifecycle() -> None:
     with TestClient(app) as client:
         email = f"user-{uuid4()}@example.com"

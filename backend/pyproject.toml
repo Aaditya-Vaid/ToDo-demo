@@ -10,7 +10,7 @@ dependencies = [
   "psycopg[binary]>=3.1.19",
   "pydantic[email]>=2.7.0",
   "passlib[bcrypt]>=1.7.4",
-  "bcrypt<5",
+  "bcrypt>=3.2.0,<4.0",
   "PyJWT>=2.8.0",
 ]
 

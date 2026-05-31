@@ -12,6 +12,9 @@ from .database import Base, engine, get_db
 from .models import Priority, Task, TaskStatus, User, utc_now
 from .schemas import AuthResponse, TaskCreate, TaskRead, TaskUpdate, Token, UserCreate
 
+DEFAULT_CORS_ORIGINS = "http://localhost:5173,http://127.0.0.1:5173"
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
@@ -20,7 +23,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="ToDo API", version="0.1.0", lifespan=lifespan)
 
-origins = [origin.strip() for origin in getenv("CORS_ORIGINS", "http://localhost:5173").split(",")]
+origins = [origin.strip() for origin in getenv("CORS_ORIGINS", DEFAULT_CORS_ORIGINS).split(",") if origin.strip()]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
