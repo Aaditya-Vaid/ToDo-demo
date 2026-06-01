@@ -12,7 +12,7 @@ from .database import Base, engine, get_db
 from .models import Priority, Task, TaskStatus, User, utc_now
 from .schemas import AuthResponse, TaskCreate, TaskRead, TaskUpdate, Token, UserCreate
 
-DEFAULT_CORS_ORIGINS = "http://localhost:5173,http://127.0.0.1:5173,https://to-do-demo-tcvf-p192g25av-aaditya-vaids-projects.vercel.app"
+DEFAULT_CORS_ORIGINS = "http://localhost:5173,http://127.0.0.1:5173,https://to-do-demo-tcvf-p192g25av-aaditya-vaids-projects.vercel.app, https://to-do-demo-tcvf-aaditya-vaids-projects.vercel.app"
 
 
 @asynccontextmanager
