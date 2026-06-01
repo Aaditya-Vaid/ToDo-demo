@@ -26,7 +26,7 @@ app = FastAPI(title="ToDo API", version="0.1.0", lifespan=lifespan)
 origins = [origin.strip() for origin in getenv("CORS_ORIGINS", DEFAULT_CORS_ORIGINS).split(",") if origin.strip()]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
